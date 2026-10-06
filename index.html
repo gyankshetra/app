@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#111827">
+<title>Gyankshetra</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f4f6f9;color:#172033;font-family:Arial,"Noto Sans Devanagari",sans-serif}.app{max-width:620px;margin:auto;padding-bottom:78px}
+.top{height:65px;background:#111827;color:#fff;display:flex;align-items:center;gap:12px;padding:10px 14px;position:sticky;top:0;z-index:10}.top button{background:none;border:0;color:#fff;font-size:21px}.brand{font-size:20px;font-weight:900;flex:1}.brand small{display:block;font-size:9px;font-weight:400;color:#aeb8c8;margin-top:2px}
+.screen{display:none;padding:16px}.screen.active{display:block}.welcome{padding:15px 2px}.welcome b{font-size:20px}.welcome small{display:block;color:#778397;margin-top:4px}
+.banner{background:linear-gradient(135deg,#0757b8,#1688e8);color:#fff;border-radius:18px;padding:18px;display:flex;align-items:center;gap:12px}.banner span{font-size:32px}.banner b{font-size:18px}.banner small{display:block;margin-top:6px;opacity:.8}.banner button{margin-left:auto;background:#fff;color:#0757b8;border:0;border-radius:10px;padding:10px;font-weight:800}
+h2{font-size:20px}h3{font-size:17px}.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px}.tiles>div,.card,.testcard,.examrow{background:#fff;border-radius:15px;box-shadow:0 3px 12px #0000000b}.tiles>div{padding:16px}.tiles b{display:block;margin-top:8px}.tiles small,.card small,.examrow small,.testcard small{display:block;color:#7b8799;margin-top:5px;font-size:11px}
+.examrow{padding:15px;margin:9px 0;display:flex;align-items:center;gap:12px}.examrow span{font-size:27px}.examrow div{flex:1}.examrow i{font-size:24px;color:#8b96a6}.card{padding:15px;margin:9px 0}.testcard{padding:15px;margin:9px 0;display:flex;align-items:center;gap:10px}.testcard div{flex:1}
+button{cursor:pointer}.testcard button,.card button,.wide{background:#075fc3;color:#fff;border:0;border-radius:10px;padding:10px 13px;font-weight:800}.wide{width:100%;margin-top:10px}
+.quizbar{background:#0c3975;color:#fff;margin:-16px -16px 14px;padding:15px;display:flex;align-items:center;gap:10px}.quizbar button{background:none;border:0;color:#fff;font-size:22px}.quizbar b{flex:1}.qcard{background:#fff;padding:16px;border-radius:16px}.qcard h2{line-height:1.5}.option{border:1px solid #dce4ed;padding:13px;border-radius:11px;margin:8px 0}.option.sel{background:#eaf4ff;border-color:#0765c7}
+.analysis{background:#eff9f1;border-left:4px solid #28a35b;padding:11px;margin-top:12px;font-size:12px;line-height:1.5}.actions{display:flex;gap:8px}.actions button{flex:1;margin-top:12px;padding:11px;border:1px solid #d9e1ea;background:#fff;border-radius:10px}.actions .next{background:#075fc3;color:#fff}
+.palette{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-top:12px}.p{background:#e9edf2;padding:8px;text-align:center;border-radius:7px;font-size:11px}.p.done{background:#ccebd8}.p.cur{background:#075fc3;color:#fff}
+.score{width:130px;height:130px;border:10px solid #29a55c;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:25px auto;font-size:28px;font-weight:900}.resultgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.resultgrid div{background:#fff;padding:13px;text-align:center;border-radius:12px}.resultgrid b,.resultgrid small{display:block}
+.profile{text-align:center}.profile div{font-size:45px}.bottom{position:fixed;bottom:0;left:0;right:0;max-width:620px;margin:auto;background:#fff;border-top:1px solid #ddd;display:flex;justify-content:space-around;z-index:20}.bottom button{background:none;border:0;padding:8px 5px;color:#6d7788}.bottom small{display:block;font-size:10px}
+.drawer{display:none;position:fixed;inset:0;background:#0008;z-index:30}.drawer.open{display:block}.menu{width:82%;max-width:340px;height:100%;background:#fff;padding:20px}.menu h2{color:#075fc3}.menu button{display:block;width:100%;text-align:left;background:none;border:0;padding:14px 4px;font-size:15px}
+.modal{display:none;position:fixed;inset:0;background:#0009;z-index:100;align-items:center;justify-content:center;padding:20px}.modal.open{display:flex}.modalbox{width:100%;max-width:390px;background:#fff;border-radius:20px;padding:24px;box-shadow:0 15px 50px #0005}.modalbox h2{margin-top:0;color:#075fc3}.modalbox input{width:100%;padding:13px;border:1px solid #d5dde8;border-radius:10px;margin:8px 0 12px;font-size:16px}.modalbox button{width:100%;padding:13px;border:0;border-radius:10px;background:#075fc3;color:#fff;font-weight:800}.idpreview{background:#eef6ff;padding:10px;border-radius:10px;margin-bottom:12px;font-weight:800}.userline{text-align:center;color:#68768a;font-size:12px;margin:5px 0 10px}
+
+.questionline{display:flex;align-items:center;justify-content:space-between;background:#fff;padding:8px 2px;margin-bottom:8px;font-weight:800}.questionline .qtimer{color:#e0a400}.qmenu{background:#075fc3;color:#fff;border:0;border-radius:8px;padding:8px 10px}.popup{display:none;position:fixed;inset:0;background:#0008;z-index:60}.popup.open{display:block}.popupbox{position:absolute;right:0;top:0;width:min(360px,92%);height:100%;background:#fff;padding:18px;overflow:auto}.popuphead{display:flex;align-items:center;justify-content:space-between}.popupclose{border:0;background:#eef4fb;padding:8px;border-radius:8px}.submitbtn{width:100%;background:#d92d2d;color:#fff;border:0;border-radius:10px;padding:13px;font-weight:800;margin-top:16px}.reviewitem{background:#fff;border-radius:15px;padding:15px;margin:12px 0;box-shadow:0 3px 12px #0000000b}.reviewitem .state{font-weight:900}.reviewitem .ok{color:#16834f}.reviewitem .bad{color:#d92d2d}.important{background:#eef6ff;border-left:4px solid #075fc3;padding:12px;border-radius:10px;margin-top:12px;line-height:1.55}.important li{margin:7px 0}.retest{width:100%;margin:16px 0;background:#16834f;color:#fff;border:0;border-radius:10px;padding:13px;font-weight:800}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="top"><button onclick="drawer()">☰</button><div class="brand">Gyankshetra<small>Learning • Practice • Success</small></div><button onclick="go('profile')">👤</button></header>
+
+<main id="home" class="screen active">
+<section class="welcome"><b id="welcome">नमस्ते विद्यार्थी 👋</b><small>आज की तैयारी शुरू करें</small></section>
+<section class="banner"><div><span>🎯</span><b>अपनी परीक्षा की तैयारी<br>एक ही जगह</b><small>BPSC TRE • STET • अन्य परीक्षाएँ</small></div><button onclick="go('exams')">देखें →</button></section>
+<h3>मुख्य तैयारी</h3>
+<div class="tiles">
+<div onclick="requireUser(startQuiz)">📝<b>Test Series</b><small>Mock & Chapter Tests</small></div>
+<div>📚<b>Study / Books</b><small>Notes & Chapters</small></div>
+<div>📄<b>Previous Papers</b><small>PYQ Practice</small></div>
+<div onclick="requireUser(startQuiz)">🎯<b>Practice</b><small>MCQ Practice</small></div>
+</div>
+<h3>आपकी परीक्षाएँ</h3>
+<div class="examrow"><span>🎓</span><div><b>BPSC TRE-4</b><small>Teacher Recruitment Preparation</small></div><i>›</i></div>
+<div class="examrow"><span>📘</span><div><b>STET</b><small>State Teacher Eligibility Test</small></div><i>›</i></div>
+<h3>आज का टेस्ट</h3>
+<div class="testcard"><div><strong>🧪 विलयन (Solutions)</strong><small>50 प्रश्न • 50 अंक • 50 मिनट • No Negative</small></div><button onclick="requireUser(startQuiz)">Start Test</button></div>
+</main>
+
+<main id="tests" class="screen"><h2>📝 Test Series</h2><div class="card" onclick="requireUser(startQuiz)">🧪 <b>विलयन — STET / BPSC TRE-4</b><small>50 Questions • 50 Marks • 50 Minutes • +1 / No Negative</small><button>Start Test</button></div><div class="card">📚 <b>Subject Wise Tests</b><small>रसायन • जीव विज्ञान • इतिहास • भूगोल</small></div><div class="card">🏆 <b>Full Mock Tests</b><small>Exam pattern practice</small></div></main>
+
+<main id="study" class="screen"><h2>📚 Study / Books</h2><div class="card">🧪 <b>रसायन विज्ञान</b><small>विलयन • रासायनिक बंधन • अम्ल-क्षार</small></div><div class="card">🧬 <b>जीव विज्ञान</b><small>Chapter-wise notes</small></div><div class="card">📜 <b>इतिहास</b><small>Chapter-wise notes</small></div></main>
+<main id="papers" class="screen"><h2>📄 Previous Year Papers</h2><div class="card">📘 <b>STET Previous Papers</b><small>Question paper practice</small></div><div class="card">📕 <b>BPSC TRE Previous Papers</b><small>PYQ practice</small></div></main>
+<main id="practice" class="screen"><h2>🎯 Practice</h2><div class="tiles"><div onclick="requireUser(startQuiz)">⚡<b>Quick MCQ</b><small>50 Questions</small></div><div onclick="requireUser(startQuiz)">🎯<b>Weak Topics</b><small>Target practice</small></div><div onclick="requireUser(startQuiz)">🔀<b>Random Test</b><small>Mixed questions</small></div><div>⭐<b>Saved Questions</b><small>Your bookmarks</small></div></div></main>
+<main id="exams" class="screen"><h2>📚 आपकी परीक्षाएँ</h2><div class="examrow"><span>🎓</span><div><b>BPSC TRE-4</b><small>Mock • PYQ • Study • Practice</small></div><i>›</i></div><div class="examrow"><span>📘</span><div><b>STET</b><small>Mock • PYQ • Study • Practice</small></div><i>›</i></div></main>
+
+<main id="quiz" class="screen">
+<div class="quizbar"><button onclick="go('tests')">‹</button><b>विलयन</b><button class="qmenu" onclick="openPopup()">☰</button></div><div class="questionline"><span>प्रश्न <span id="qn">1/50</span></span><span class="qtimer">⏱ <span id="timer">50:00</span></span></div>
+<div class="userline" id="quizUser"></div>
+<div class="qcard"><small>प्रश्न <span id="num">1</span> / 50</small><h2 id="question"></h2><div id="options"></div><div id="analysis" class="analysis" hidden></div><div class="actions"><button onclick="prev()">← पिछला</button><button class="next" onclick="next()">अगला →</button></div></div><div id="palette" class="palette"></div>
+</main>
+
+<main id="result" class="screen"><h2>🏆 Result</h2><div class="userline" id="resultUser"></div><div class="score" id="score">0%</div><div class="resultgrid"><div>✅<b id="correct">0</b><small>सही</small></div><div>❌<b id="wrong">0</b><small>गलत</small></div><div>⭕<b id="skip">0</b><small>छोड़े</small></div></div><div class="card"><b>कुल अंक</b><strong id="marks">0 / 50</strong><small>50 Minutes • No Negative Marking</small></div><button class="wide" onclick="showReview()">🔎 Review</button></main>
+<main id="review" class="screen"><h2>🔎 Review</h2><p class="userline">प्रत्येक प्रश्न का उत्तर और परीक्षा-उपयोगी विश्लेषण</p><div id="reviewList"></div><button class="retest" onclick="reattempt()">🔄 Retest / Reattempt</button></main><main id="important" class="screen"><h2>⭐ Important Points</h2><div id="pointsList"></div></main>
+<main id="profile" class="screen"><h2>👤 Profile</h2><div class="profile card"><div>👤</div><h3 id="profileName">Gyankshetra Student</h3><small id="profileId">Login करके अपनी ID बनाएँ</small></div><div class="card"><b>📊 Test History</b><small id="historyText">अभी कोई टेस्ट नहीं दिया गया।</small></div><div class="card"><b>🏆 Best Score</b><strong id="bestScore">0 / 50</strong></div><button class="wide" onclick="changeUser()">👤 Change User</button></main>
+</div>
+
+<nav class="bottom"><button onclick="go('home')">⌂<small>Home</small></button><button onclick="go('tests')">📝<small>Tests</small></button><button onclick="go('practice')">🎯<small>Quiz</small></button><button onclick="go('important')">⭐<small>Saved</small></button><button onclick="go('profile')">👤<small>Profile</small></button></nav>
+
+<div id="drawer" class="drawer" onclick="drawer()"><div class="menu" onclick="event.stopPropagation()"><h2>Gyankshetra</h2><button onclick="go('home');drawer()">🏠 Home</button><button onclick="go('tests');drawer()">📝 Test Series</button><button onclick="go('study');drawer()">📚 Study / Books</button><button onclick="go('papers');drawer()">📄 Previous Papers</button><button onclick="go('practice');drawer()">🎯 Practice</button><button onclick="go('exams');drawer()">📚 Exams</button><button onclick="go('result');drawer()">🏆 Results</button><button onclick="go('profile');drawer()">👤 Profile</button></div></div>
+
+<div id="questionPopup" class="popup"><div class="popupbox"><div class="popuphead"><h2>📋 Questions</h2><button class="popupclose" onclick="closePopup()">✕</button></div><p style="font-size:12px;color:#68768a">नीला = वर्तमान • हरा = उत्तर दिया</p><div id="popupPalette" class="palette"></div><button class="submitbtn" onclick="finish()">🔴 Submit Test</button></div></div>
+<div id="loginModal" class="modal"><div class="modalbox">
+<h2>🎓 Gyankshetra Login</h2>
+<p>Test शुरू करने से पहले अपना नाम दर्ज करें।</p>
+<label>👤 आपका नाम</label>
+<input id="nameInput" placeholder="जैसे: Arbind Kumar" oninput="previewId()">
+<div class="idpreview" id="idPreview">आपकी ID: @01Name</div>
+<button onclick="saveUser()">आगे बढ़ें →</button>
+<p style="font-size:11px;color:#7b8799;margin-top:12px">नाम और ID इसी ब्राउज़र/डिवाइस में सेव होंगे।</p>
+</div></div>
+
+<script>
+const TOTAL=50,TIME=50*60;
+const questions=[];
+const facts=[
+"मोलरता = विलेय के मोल / विलयन का आयतन (लीटर)।",
+"मोललता = विलेय के मोल / विलायक का द्रव्यमान (किलोग्राम)।",
+"मोल अंश सभी अवयवों के मोलों के योग से संबंधित है।",
+"ppm बहुत कम सांद्रता व्यक्त करने की इकाई है।",
+"हेनरी का नियम गैस की द्रव में विलेयता से संबंधित है।"
+];
+const bank=[
+["विलयन की मोलरता किस पर निर्भर करती है?",["विलयन के आयतन पर","केवल दाब पर","केवल रंग पर","केवल घनत्व पर"],0],
+["मोलरता की सामान्य इकाई क्या है?",["mol kg⁻¹","mol L⁻¹","g L⁻¹","L mol⁻¹"],1],
+["मोललता किस पर आधारित होती है?",["विलयन के आयतन पर","विलायक के द्रव्यमान पर","विलेय के आयतन पर","दाब पर"],1],
+["हेनरी का नियम किससे संबंधित है?",["गैस की द्रव में विलेयता","गलनांक","परमाणु द्रव्यमान","pH"],0],
+["राउल्ट का नियम मुख्यतः किससे संबंधित है?",["वाष्प-दाब","घनत्व","pH","चालकता"],0]
+];
+for(let i=0;i<TOTAL;i++){
+  if(i<bank.length) questions.push(bank[i]);
+  else questions.push([`विलयन — STET/BPSC TRE-4 प्रश्न ${i+1}`,["मोलरता आयतन से संबंधित है","मोललता विलायक के द्रव्यमान से संबंधित है","दोनों अवधारणाएँ महत्वपूर्ण हैं","इनमें से कोई नहीं"],i%3]);
+}
+let qi=0,ans=Array(TOTAL).fill(null),time=TIME,timerHandle=null,pendingAction=null;
+
+function go(id){document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");scrollTo(0,0);updateProfile();}
+function drawer(){document.getElementById("drawer").classList.toggle("open")}
+function getUser(){return {name:localStorage.getItem("gyankshetraUserName")||"",id:localStorage.getItem("gyankshetraUserId")||""}}
+function shortName(n){return (n.trim().split(/\s+/)[0]||"Name").replace(/[^\p{L}\p{N}]/gu,"")}
+function nextNo(){return Number(localStorage.getItem("gyankshetraNextNumber")||1)}
+function previewId(){let n=nextNo();let name=shortName(document.getElementById("nameInput").value)||"Name";document.getElementById("idPreview").textContent="आपकी ID: @"+String(n).padStart(2,"0")+name}
+function requireUser(action){if(getUser().name){action()}else{pendingAction=action;document.getElementById("loginModal").classList.add("open");setTimeout(()=>document.getElementById("nameInput").focus(),100);previewId()}}
+function saveUser(){let name=document.getElementById("nameInput").value.trim();if(!name){alert("कृपया अपना नाम दर्ज करें।");return}let n=nextNo();let id="@"+String(n).padStart(2,"0")+shortName(name);localStorage.setItem("gyankshetraUserName",name);localStorage.setItem("gyankshetraUserId",id);localStorage.setItem("gyankshetraNextNumber",String(n+1));document.getElementById("loginModal").classList.remove("open");updateProfile();let a=pendingAction;pendingAction=null;if(a)a()}
+function changeUser(){localStorage.removeItem("gyankshetraUserName");localStorage.removeItem("gyankshetraUserId");document.getElementById("nameInput").value="";previewId();document.getElementById("loginModal").classList.add("open")}
+function updateProfile(){let u=getUser();document.getElementById("profileName").textContent=u.name||"Gyankshetra Student";document.getElementById("profileId").textContent=u.id||"Login करके अपनी ID बनाएँ";document.getElementById("welcome").textContent=u.name?"नमस्ते "+u.name+" 👋":"नमस्ते विद्यार्थी 👋";document.getElementById("quizUser").textContent=u.id?u.name+" • "+u.id:"";document.getElementById("resultUser").textContent=u.id?u.name+" • "+u.id:"";let h=JSON.parse(localStorage.getItem("gyankshetraHistory")||"[]");document.getElementById("historyText").textContent=h.length?`${h.length} टेस्ट पूरे किए • पिछला: ${h[h.length-1].marks}/50`:"अभी कोई टेस्ट नहीं दिया गया।";let best=h.reduce((m,x)=>Math.max(m,Number(x.marks)||0),0);document.getElementById("bestScore").textContent=best+" / 50"}
+
+function openPopup(){document.getElementById("questionPopup").classList.add("open");renderPopup()}
+function closePopup(){document.getElementById("questionPopup").classList.remove("open")}
+function renderPopup(){document.getElementById("popupPalette").innerHTML=questions.map((_,i)=>`<span class="p ${ans[i]!==null?"done":""} ${i===qi?"cur":""}" onclick="jumpQuestion(${i})">${i+1}</span>`).join("")}
+function jumpQuestion(i){qi=i;closePopup();render()}
+function showReview(){go("review");let list=document.getElementById("reviewList");list.innerHTML="";questions.forEach((q,i)=>{let ok=ans[i]===q[2];let userAns=ans[i]===null?"नहीं दिया":q[1][ans[i]];let points=[`सही उत्तर ${String.fromCharCode(65+q[2])} है: ${q[1][q[2]]}। इस तथ्य को सीधे याद रखें।`,`यह प्रश्न ${q[0]} के मूल concept को जाँचता है और objective exam में इसी तरह पूछा जा सकता है।`,`इस topic में परिभाषा और संबंधित इकाई/संबंध को साथ पढ़ना उपयोगी है।`,`STET/BPSC TRE में statement-based और one-best-answer प्रश्न बन सकते हैं, इसलिए शब्दों की सटीकता महत्वपूर्ण है।`,`संबंधित अवधारणाओं को आपस में तुलना करके पढ़ने से confusion कम होता है।`,`यदि प्रश्न numerical रूप में आए तो दिए गए units और quantities को पहले पहचानें।`,`NCERT स्तर की मूल अवधारणा मजबूत होने पर ऐसे प्रश्न जल्दी हल किए जा सकते हैं।`,`परीक्षा में विकल्पों के छोटे अंतर को पहचानना जरूरी है; केवल अनुमान पर निर्भर न रहें।`,`Revision के समय इस प्रश्न को एक flashcard की तरह दोहराएँ और key term को याद रखें।`,`BPSC TRE/STET preparation में इस तथ्य को chapter-wise notes के साथ जोड़कर पढ़ना लाभदायक है।`];let d=document.createElement("div");d.className="reviewitem";d.innerHTML=`<h3>प्रश्न ${i+1} / 50</h3><p><b>${q[0]}</b></p><p>${q[1].map((o,j)=>`${String.fromCharCode(65+j)}. ${o}`).join("<br>")}</p><p class="state ${ok?"ok":"bad"}">${ok?"✅ सही":"❌ गलत"}</p><p>आपका उत्तर: <b>${userAns}</b><br>सही उत्तर: <b>${String.fromCharCode(65+q[2])}. ${q[1][q[2]]}</b></p><div class="important"><b>📚 Important Facts — ${q[1][q[2]]}</b><ol>${points.map(x=>`<li>${x}</li>`).join("")}</ol></div>`;list.appendChild(d)})}
+function reattempt(){startQuiz()}
+function startQuiz(){qi=0;ans=Array(TOTAL).fill(null);time=TIME;clearInterval(timerHandle);go("quiz");render();timerHandle=setInterval(()=>{if(time>0){time--;renderTimer()}else finish()},1000)}
+function renderTimer(){let m=Math.floor(time/60),s=time%60;document.getElementById("timer").textContent=String(m).padStart(2,"0")+":"+String(s).padStart(2,"0")}
+function render(){let q=questions[qi];document.getElementById("qn").textContent=(qi+1)+"/"+TOTAL;document.getElementById("num").textContent=qi+1;document.getElementById("question").textContent=q[0];document.getElementById("options").innerHTML=q[1].map((o,i)=>`<div class="option ${ans[qi]===i?"sel":""}" onclick="choose(${i})">${String.fromCharCode(65+i)}. ${o}</div>`).join("");document.getElementById("analysis").hidden=true;document.getElementById("palette").innerHTML=questions.map((_,i)=>`<span class="p ${ans[i]!==null?"done":""} ${i===qi?"cur":""}" onclick="qi=${i};render()">${i+1}</span>`).join("");renderTimer();}
+function choose(i){ans[qi]=i;render();renderPopup()}function next(){if(qi<TOTAL-1){qi++;render()}else finish()}function prev(){if(qi>0){qi--;render()}}
+function finish(){if(timerHandle===null && document.getElementById("quiz").classList.contains("active")){return}cl
